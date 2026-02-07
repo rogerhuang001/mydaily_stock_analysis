@@ -3,7 +3,7 @@ name: 每日股票分析
 on:
   # 定时触发 - 每天北京时间 18:00 (UTC 10:00)
   schedule:
-    - cron: '0 10 * * 5'     # UTC 10:00 = 北京时间 18:00
+    - cron: '0 10 * * 1-5'     # UTC 10:00 = 北京时间 18:00
   
   # 手动触发
   workflow_dispatch:
@@ -57,7 +57,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || secrets.GEMINI_MODEL || 'gemini-2.5-flash' }}
           GEMINI_MODEL_FALLBACK: ${{ vars.GEMINI_MODEL_FALLBACK || secrets.GEMINI_MODEL_FALLBACK || 'gemini-2.0-flash' }}
-          GEMINI_REQUEST_DELAY: '3.0'
+          GEMINI_REQUEST_DELAY: '5.0'
           
           # OpenAI 兼容 API（备选）
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -134,7 +134,7 @@ jobs:
           # 系统配置
           # ==========================================
           LOG_LEVEL: INFO
-          MAX_WORKERS: 3
+          MAX_WORKERS: 1
           # GitHub Actions 环境建议关闭不稳定的数据源
           ENABLE_CHIP_DISTRIBUTION: 'false'
           
